@@ -14,12 +14,16 @@
         "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
       },
       {
-        "label": "GitHub [UPDATE_ME]",
-        "href": "https://github.com/UPDATE_ME"
+        "label": "Google Scholar",
+        "href": "https://scholar.google.com/citations?user=OiNwcL0AAAAJ&hl=en"
       },
       {
-        "label": "X [UPDATE_ME]",
-        "href": "https://x.com/UPDATE_ME"
+        "label": "GitHub",
+        "href": "https://github.com/peteryzheng"
+      },
+      {
+        "label": "X",
+        "href": "https://x.com/zheng_youyun"
       }
     ]
   },
@@ -132,18 +136,22 @@
       "label": "Email",
       "href": "mailto:youyunzheng@hms.harvard.edu"
     },
-    {
-      "label": "LinkedIn",
-      "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
-    },
-    {
-      "label": "GitHub [UPDATE_ME]",
-      "href": "https://github.com/UPDATE_ME"
-    },
-    {
-      "label": "X [UPDATE_ME]",
-      "href": "https://x.com/UPDATE_ME"
-    }
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
+      },
+      {
+        "label": "Google Scholar",
+        "href": "https://scholar.google.com/citations?user=OiNwcL0AAAAJ&hl=en"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/peteryzheng"
+      },
+      {
+        "label": "X",
+        "href": "https://x.com/zheng_youyun"
+      }
   ],
   "last_updated": "February 18, 2026"
 }
