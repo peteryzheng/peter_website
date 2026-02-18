@@ -16,6 +16,8 @@ const RANKS = [
 ];
 
 const STARTING_BALANCE = 500;
+const TARGET_SCORE = 25;
+const DEALER_STAND_SCORE = 21;
 let balance = STARTING_BALANCE;
 let currentBet = 0;
 let playerHand = [];
@@ -58,16 +60,12 @@ function handValue(hand) {
     }
   });
 
-  while (total > 21 && aceCount > 0) {
+  while (total > TARGET_SCORE && aceCount > 0) {
     total -= 10;
     aceCount -= 1;
   }
 
   return total;
-}
-
-function isBlackjack(hand) {
-  return hand.length === 2 && handValue(hand) === 21;
 }
 
 function currency(amount) {
@@ -123,10 +121,7 @@ function settleRound(result, message) {
   hideDealerHole = false;
   gameState = "round_over";
 
-  if (result === "player_blackjack") {
-    balance += currentBet * 2.5;
-    setStatus(message, "win");
-  } else if (result === "player_win") {
+  if (result === "player_win") {
     balance += currentBet * 2;
     setStatus(message, "win");
   } else if (result === "push") {
@@ -147,14 +142,14 @@ function settleRound(result, message) {
 function dealerTurn() {
   hideDealerHole = false;
 
-  while (handValue(dealerHand) < 17) {
+  while (handValue(dealerHand) < DEALER_STAND_SCORE) {
     dealerHand.push(drawCard());
   }
 
   const dealerTotal = handValue(dealerHand);
   const playerTotal = handValue(playerHand);
 
-  if (dealerTotal > 21) {
+  if (dealerTotal > TARGET_SCORE) {
     settleRound("player_win", "Dealer busts. You win.");
     return;
   }
@@ -191,20 +186,7 @@ function startRound() {
   hideDealerHole = true;
   gameState = "player_turn";
 
-  if (isBlackjack(playerHand) && isBlackjack(dealerHand)) {
-    settleRound("push", "Both have blackjack. Push.");
-    return;
-  }
-  if (isBlackjack(playerHand)) {
-    settleRound("player_blackjack", "Blackjack! Paid 3:2.");
-    return;
-  }
-  if (isBlackjack(dealerHand)) {
-    settleRound("dealer_win", "Dealer has blackjack.");
-    return;
-  }
-
-  setStatus("Your move: hit or stand.");
+  setStatus(`Goal is ${TARGET_SCORE}: hit or stand.`);
   render();
 }
 
@@ -216,13 +198,13 @@ function hit() {
   playerHand.push(drawCard());
   const total = handValue(playerHand);
 
-  if (total > 21) {
+  if (total > TARGET_SCORE) {
     settleRound("dealer_win", "Bust. Dealer wins.");
     return;
   }
 
-  if (total === 21) {
-    setStatus("21 reached. Dealer plays.");
+  if (total === TARGET_SCORE) {
+    setStatus(`${TARGET_SCORE} reached. Dealer plays.`);
     render();
     dealerTurn();
     return;
